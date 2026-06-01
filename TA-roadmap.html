@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TA Roadmap - Knowledge Checklist</title>
+    <style>
+      :root {
+        --bg: #f5f7fb;
+        --surface: #ffffff;
+        --surface-2: #eef4fb;
+        --text: #17202a;
+        --muted: #617083;
+        --line: #d7e1ec;
+        --accent: #1366d6;
+        --done: #147a43;
+        --doing: #9a5b00;
+        --missing: #b42318;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+
+      .page {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 28px 20px 72px;
+      }
+
+      .hero {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 28px;
+        box-shadow: 0 16px 42px rgba(23, 32, 42, 0.08);
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(32px, 5vw, 58px);
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        margin: 42px 0 12px;
+        font-size: 26px;
+        line-height: 1.2;
+      }
+
+      p {
+        margin: 0 0 12px;
+      }
+
+      .lead {
+        max-width: 940px;
+        margin-top: 16px;
+        color: var(--muted);
+        font-size: 17px;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 30px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #e8f1ff;
+        color: #104f9c;
+        font-size: 13px;
+        font-weight: 750;
+      }
+
+      .toc {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .toc a {
+        color: var(--accent);
+        background: #f0f6ff;
+        border: 1px solid #cfe2ff;
+        border-radius: 6px;
+        padding: 7px 10px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .note {
+        color: var(--muted);
+        max-width: 1000px;
+      }
+
+      .table-wrap {
+        overflow: auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+      }
+
+      table {
+        width: 100%;
+        min-width: 1380px;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 11px 12px;
+        border-bottom: 1px solid var(--line);
+        border-right: 1px solid var(--line);
+        vertical-align: top;
+        text-align: left;
+        font-size: 13px;
+      }
+
+      th {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: var(--surface-2);
+        color: #30465c;
+        font-size: 12px;
+        font-weight: 850;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      td:last-child,
+      th:last-child {
+        border-right: 0;
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      code {
+        padding: 2px 5px;
+        border-radius: 5px;
+        background: #eef2f7;
+        color: #243447;
+        font-size: 0.93em;
+      }
+
+      .w-topic {
+        width: 190px;
+        font-weight: 800;
+      }
+
+      .w-desc {
+        width: 330px;
+      }
+
+      .w-practice {
+        width: 330px;
+      }
+
+      .w-score {
+        width: 76px;
+        font-weight: 900;
+        white-space: nowrap;
+      }
+
+      .w-difficulty {
+        width: 88px;
+        text-align: center;
+        font-weight: 850;
+        white-space: nowrap;
+      }
+
+      .w-status {
+        width: 120px;
+      }
+
+      .w-next {
+        width: 340px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 24px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .tag.done {
+        color: var(--done);
+        background: #e7f7ee;
+      }
+
+      .tag.doing {
+        color: var(--doing);
+        background: #fff4df;
+      }
+
+      .tag.missing {
+        color: var(--missing);
+        background: #ffe8e6;
+      }
+
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .summary-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 16px;
+      }
+
+      .summary-card strong {
+        display: block;
+        font-size: 22px;
+      }
+
+      .summary-card span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      @media (max-width: 900px) {
+        .summary-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">TA Roadmap</p>
+        <h1>Knowledge Checklist Dạng Table</h1>
+        <p class="lead">
+          Bản này liệt kê toàn bộ kiến thức theo từng nhóm, giống một workbook Excel:
+          đã học, chưa học, mức điểm, trạng thái và việc cần học tiếp. Mỗi topic là một dòng để sau này cập nhật dễ hơn.
+        </p>
+        <div class="meta">
+          <span class="pill">Cập nhật: 26/05/2026</span>
+          <span class="pill">Mục tiêu: Technical Architect</span>
+          <span class="pill">Stack: NestJS, PostgreSQL, Kubernetes, GitOps, Event-driven</span>
+        </div>
+        <nav class="toc">
+          <a href="#overview">Tổng quan</a>
+          <a href="#docker">Docker</a>
+          <a href="#k8s">Kubernetes</a>
+          <a href="#gitops">GitOps</a>
+          <a href="#observability">Observability</a>
+          <a href="#event-driven">Event-driven</a>
+          <a href="#clean">Clean Architecture</a>
+          <a href="#tactical-ddd">Tactical DDD</a>
+          <a href="#strategic-ddd">Strategic DDD</a>
+          <a href="#nestjs">NestJS Core</a>
+          <a href="#graphql">GraphQL</a>
+          <a href="#security">Security</a>
+          <a href="#postgres">PostgreSQL / SQL</a>
+          <a href="#ops">Ops / System Design</a>
+        </nav>
+      </section>
+
+      <section id="overview">
+        <h2>Tổng Quan Điểm Hiện Tại</h2>
+        <div class="summary-grid">
+          <div class="summary-card"><strong>4/5</strong><span>Docker, Kubernetes, GitOps, RabbitMQ cơ bản, Clean Architecture core.</span></div>
+          <div class="summary-card"><strong>3/5</strong><span>Datadog/APM, Saga, Tactical DDD, GraphQL, Security cơ bản.</span></div>
+          <div class="summary-card"><strong>2/5</strong><span>Strategic DDD sâu, Kafka practice, PostgreSQL nền tảng nâng cao.</span></div>
+          <div class="summary-card"><strong>1/5</strong><span>Event Storming, Subdomain Classification, Alert/SLO, EXPLAIN/index chuyên sâu.</span></div>
+        </div>
+      </section>
+
+      <section id="docker">
+        <h2>Docker / Docker Compose</h2>
+        <p class="note">Mảng này đã ổn cho mục tiêu deploy app. Cần học thêm phần hardening/tối ưu image nếu muốn production kỹ hơn.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="w-topic">Kiến thức</th><th class="w-desc">Định nghĩa / Dùng để làm gì</th><th class="w-practice">Chi tiết</th><th class="w-score">Điểm</th><th class="w-difficulty">Độ khó</th><th class="w-status">Trạng thái</th><th class="w-next">Còn thiếu / Học tiếp</th></tr></thead>
+            <tbody>
+              <tr><td class="w-topic">Container Runtime Basics</td><td>Image là artifact deploy; container là instance chạy từ image.</td><td>Image là package bất biến của app/dependency/runtime; container là process được cô lập chạy từ image đó. Khi debug cần nhớ container có lifecycle riêng, filesystem tạm, network namespace riêng, logs thường đọc qua runtime/K8s chứ không SSH vào sửa tay.</td><td class="w-score">4/5</td><td class="w-difficulty">L1</td><td><span class="tag done">Đã ổn</span></td><td>Debug network/volume/logs sâu hơn khi gặp incident.</td></tr>
+              <tr><td class="w-topic">Image Build</td><td>Thiết kế Dockerfile để đóng gói app production.</td><td>Dockerfile quyết định app chạy được, build reproducible, image nhẹ và ít lỗ hổng. Cần nhớ layer cache ảnh hưởng tốc độ build, dev dependency không nên đi vào production image, CMD/ENTRYPOINT là process chính, image tag phải immutable khi deploy.</td><td class="w-score">4/5</td><td class="w-difficulty">L2</td><td><span class="tag done">Đã ổn</span></td><td>Multi-stage build, non-root user, layer cache, healthcheck, image scan, immutable tag.</td></tr>
+              <tr><td class="w-topic">Local Compose / Registry</td><td>Compose chạy stack local; registry lưu image để server/K8s pull.</td><td>Compose dùng để dựng nhiều service local như app + DB + broker bằng một network chung; registry là nơi lưu image versioned cho CI/CD và K8s pull. Bẫy cần nhớ: local volume/hot reload khác production image, secret local không được leak vào repo.</td><td class="w-score">4/5</td><td class="w-difficulty">L1</td><td><span class="tag done">Đã ổn</span></td><td>Compose profiles/networks, local secret handling, private registry auth rotation.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="k8s">
+        <h2>Kubernetes / K3s</h2>
+        <p class="note">Đây là mảng đã học rất nhiều qua kind và VPS k3s. Còn thiếu phần HA/multi-node nâng cao và storage production.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="w-topic">Kiến thức</th><th class="w-desc">Định nghĩa / Dùng để làm gì</th><th class="w-practice">Chi tiết</th><th class="w-score">Điểm</th><th class="w-difficulty">Độ khó</th><th class="w-status">Trạng thái</th><th class="w-next">Còn thiếu / Học tiếp</th></tr></thead>
+            <tbody>
+              <tr><td class="w-topic">Cluster Fundamentals</td><td>Cluster, node, control plane, desired state và API server.</td><td>Cluster là tập node chạy workload. API server nhận YAML/desired state, control plane quyết định pod nên chạy ở đâu, kubelet trên node kéo image và giữ pod sống. Cốt lõi K8s là reconciliation: trạng thái thật lệch thì controller kéo về trạng thái mong muốn.</td><td class="w-score">4/5</td><td class="w-difficulty">L2</td><td><span class="tag done">Đã ổn</span></td><td>HA control plane, multi-node, datastore backup, upgrade strategy.</td></tr>
+              <tr><td class="w-topic">Workloads</td><td>Pod, Deployment, ReplicaSet, StatefulSet, Job và lifecycle workload.</td><td>Pod là đơn vị chạy container; Deployment phù hợp stateless service và rollout/rollback; StatefulSet phù hợp workload cần identity/storage ổn định; Job dùng cho task chạy xong như migration. Chọn sai workload sẽ làm deploy, storage hoặc retry rất đau.</td><td class="w-score">4/5</td><td class="w-difficulty">L2</td><td><span class="tag done">Đã ổn</span></td><td>Sidecar/init container, canary/blue-green, job cleanup, stateful operator/managed DB.</td></tr>
+              <tr><td class="w-topic">Networking / Ingress</td><td>Service, ClusterIP, NodePort, Ingress, DNS route traffic trong/ngoài cluster.</td><td>Pod IP thay đổi nên Service tạo endpoint ổn định; app gọi nhau bằng DNS service name; Ingress nhận HTTP/HTTPS từ ngoài và route theo host/path. Khi debug traffic phải đi theo chain: client -> ingress -> service -> endpoint -> pod.</td><td class="w-score">4/5</td><td class="w-difficulty">L2</td><td><span class="tag done">Đã ổn</span></td><td>TLS, cert-manager, host-based routing, service mesh concept, NetworkPolicy.</td></tr>
+              <tr><td class="w-topic">Config / Secrets / Health</td><td>Namespace, ConfigMap, Secret, readiness/liveness/startup probe.</td><td>Namespace chia phạm vi quản lý; ConfigMap/Secret inject config vào pod; readiness quyết định pod có nhận traffic không, liveness quyết định restart, startup tránh app khởi động chậm bị kill nhầm. Probe sai có thể tạo incident restart loop.</td><td class="w-score">3/5</td><td class="w-difficulty">L2</td><td><span class="tag doing">Cần nâng</span></td><td>External Secrets/SOPS/Sealed Secrets, RBAC namespace, config reload, health endpoint chuẩn.</td></tr>
+              <tr><td class="w-topic">Storage / Scaling / Security</td><td>PV/PVC, StorageClass, HPA, node scheduling và network isolation.</td><td>PV/PVC giữ data sau khi pod restart, nhưng stateful DB không chạy kiểu nhiều pod cùng write chung data directory. Thực tế thường là primary nhận write, replica phục vụ read/HA, hoặc dùng managed DB ngoài cluster. Scale app pod cũng phải kiểm soát DB connection, security và network policy.</td><td class="w-score">2/5</td><td class="w-difficulty">L3</td><td><span class="tag doing">Còn thiếu</span></td><td>StorageClass, reclaim policy, snapshots, HPA với metrics thật, taints/tolerations, NetworkPolicy.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="gitops">
+        <h2>GitOps / CI-CD / Argo CD</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="w-topic">Kiến thức</th><th class="w-desc">Định nghĩa / Dùng để làm gì</th><th class="w-practice">Chi tiết</th><th class="w-score">Điểm</th><th class="w-difficulty">Độ khó</th><th class="w-status">Trạng thái</th><th class="w-next">Còn thiếu / Học tiếp</th></tr></thead>
+            <tbody>
+              <tr><td class="w-topic">GitOps Workflow</td><td>Git là source of truth cho app/hạ tầng; Argo CD sync desired state vào cluster.</td><td>GitOps nghĩa là không sửa cluster bằng tay làm source of truth; thay đổi đi qua Git, review, rồi Argo CD sync vào cluster. Lợi ích là audit, rollback bằng commit, phát hiện drift. Bẫy: auto-prune/sync sai có thể xóa resource thật nếu repo sai.</td><td class="w-score">4/5</td><td class="w-difficulty">L2</td><td><span class="tag done">Đã ổn</span></td><td>Policy/review flow, sync waves/hooks, diff customization, prune governance.</td></tr>
+              <tr><td class="w-topic">K8s Config Packaging</td><td>Quản lý manifest theo môi trường bằng Kustomize/Helm.</td><td>Kustomize phù hợp overlay theo môi trường như image tag, replicas, ingress; Helm phù hợp chart/template và third-party app. Mục tiêu là reuse config nhưng vẫn nhìn được khác biệt giữa env, tránh copy YAML rồi drift.</td><td class="w-score">4/5</td><td class="w-difficulty">L2</td><td><span class="tag done">Đã ổn</span></td><td>Kustomize components/generators; Helm khi cần third-party chart hoặc app packaging.</td></tr>
+              <tr><td class="w-topic">CI / Image Automation</td><td>Build/push image, cập nhật image tag, automate dependency/image bump.</td><td>CI tạo artifact: test code, build image, push registry, cập nhật tag qua PR hoặc release flow. Nên phân biệt build artifact với deploy artifact; prod nên deploy image tag/digest rõ ràng, không phụ thuộc tag trôi nổi như latest.</td><td class="w-score">4/5</td><td class="w-difficulty">L2</td><td><span class="tag done">Đã ổn</span></td><td>Security scan, cache, release artifacts, test gates, private registry pull secret rotation.</td></tr>
+              <tr><td class="w-topic">Environment Promotion</td><td>Promote dev -> staging -> prod bằng Git/tag/PR và release policy.</td><td>Promotion là đưa cùng artifact đã test từ dev qua staging/prod bằng PR/tag/approval, không rebuild khác nhau ở mỗi môi trường. Nó giúp biết version nào đang chạy, rollback version nào, và ai approve thay đổi production.</td><td class="w-score">1/5</td><td class="w-difficulty">L3</td><td><span class="tag missing">Chưa học</span></td><td>Quan trọng khi nâng cấp dev/prod thật: promotion flow, rollback, approvals.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="observability">
+        <h2>Monitoring / Observability</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="w-topic">Kiến thức</th><th class="w-desc">Định nghĩa / Dùng để làm gì</th><th class="w-practice">Chi tiết</th><th class="w-score">Điểm</th><th class="w-difficulty">Độ khó</th><th class="w-status">Trạng thái</th><th class="w-next">Còn thiếu / Học tiếp</th></tr></thead>
+            <tbody>
+              <tr><td class="w-topic">Metrics / Logs / Traces</td><td>Ba tín hiệu chính để debug và hiểu health hệ thống.</td><td>Metrics trả lời hệ thống đang khỏe hay không bằng số liệu; logs trả lời chuyện gì đã xảy ra; traces trả lời một request đi qua service nào và nghẽn ở đâu. Khi incident, đừng chỉ xem log rời rạc: bắt đầu từ symptom, metric, trace, rồi mới đào log chi tiết.</td><td class="w-score">3/5</td><td class="w-difficulty">L2</td><td><span class="tag doing">Cần luyện</span></td><td>Trace-log correlation, custom spans, log schema/log level, redact sensitive data.</td></tr>
+              <tr><td class="w-topic">Datadog Platform</td><td>Thu thập logs/metrics/APM/process/container data trên cluster.</td><td>Datadog gom telemetry từ node, container, app, DB/broker integration và APM. Dùng để thấy pod restart, latency, error rate, trace chậm, log theo request id. Bẫy cần nhớ: thu nhiều log quá tốn tiền, log thiếu correlation id thì khó debug.</td><td class="w-score">3/5</td><td class="w-difficulty">L2</td><td><span class="tag doing">Cần luyện</span></td><td>Resource tuning, upgrade, cluster checks, FE RUM thật.</td></tr>
+              <tr><td class="w-topic">Alerting / SLO / Dashboard</td><td>Cảnh báo và dashboard theo reliability target thay vì chỉ xem UI thủ công.</td><td>Dashboard để quan sát, alert để gọi người khi user bị ảnh hưởng hoặc sắp bị ảnh hưởng. Alert tốt bám vào SLI/SLO như error rate, p95 latency, queue lag, DLQ growth; alert xấu bắn theo noise khiến team bỏ qua cảnh báo thật.</td><td class="w-score">1/5</td><td class="w-difficulty">L3</td><td><span class="tag missing">Chưa học</span></td><td>Error rate, p95 latency, pod restart, DLQ growth, SLI/SLO, burn-rate alert.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="event-driven">
+        <h2>Event-driven / RabbitMQ / Kafka</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="w-topic">Kiến thức</th><th class="w-desc">Định nghĩa / Dùng để làm gì</th><th class="w-practice">Chi tiết</th><th class="w-score">Điểm</th><th class="w-difficulty">Độ khó</th><th class="w-status">Trạng thái</th><th class="w-next">Còn thiếu / Học tiếp</th></tr></thead>
+            <tbody>
+              <tr><td class="w-topic">RabbitMQ Fundamentals</td><td>Broker, exchange, queue, binding, routing key và message flow.</td><td>RabbitMQ là broker cho async work: producer gửi message vào exchange, binding/routing key đưa vào queue, consumer lấy ra xử lý. Dùng tốt cho side effect, retry, email, notification, sync CRM; không nên dùng để che giấu model sai hoặc transaction không rõ.</td><td class="w-score">4/5</td><td class="w-difficulty">L2</td><td><span class="tag done">Đã ổn</span></td><td>Broker cluster/HA, managed broker, exchange type trade-off, TTL/max length/priority.</td></tr>
+              <tr><td class="w-topic">Consumer Semantics</td><td>Cách consumer xử lý message: ack/nack, prefetch, competing consumers, ordering.</td><td>Ack nghĩa là xử lý xong mới xác nhận; nack/requeue quyết định retry; prefetch giới hạn số message đang xử lý để tránh consumer ôm quá nhiều. Scale nhiều consumer tăng throughput nhưng có thể làm mất ordering toàn cục, nên phải hiểu ordering theo queue/key.</td><td class="w-score">4/5</td><td class="w-difficulty">L2</td><td><span class="tag done">Đã ổn</span></td><td>Poison message, nack requeue false, throughput tuning, ordering khi scale consumer.</td></tr>
+              <tr><td class="w-topic">Reliability Patterns</td><td>Outbox, retry/DLQ, idempotency và message ordering để tránh mất/trùng side effect.</td><td>Outbox giải quyết DB commit thành công nhưng publish event fail; DLQ giữ message lỗi để điều tra/replay; idempotency chống xử lý trùng. Cần nhớ message system thường là at-least-once, nên consumer phải chịu được duplicate.</td><td class="w-score">4/5</td><td class="w-difficulty">L3</td><td><span class="tag done">Đã ổn</span></td><td>Backoff, stuck lock recovery, DLQ replay tool, outbox/DLQ alerts, Kafka partition by aggregate id.</td></tr>
+              <tr><td class="w-topic">Projection / Event Sourcing</td><td>Consumer build read model từ event; event sourcing lưu state changes bằng event log.</td><td>Projection là consumer đọc event để build read model/report/search table; source of truth vẫn có thể là OLTP DB. Event sourcing thì event log mới là source of truth, state hiện tại được replay ra. Hai thứ này khác nhau, đừng gọi mọi event-driven là event sourcing.</td><td class="w-score">3/5</td><td class="w-difficulty">L3</td><td><span class="tag doing">Cần luyện</span></td><td>Build projection table thật, replay, snapshot, event store versioning.</td></tr>
+              <tr><td class="w-topic">Kafka Basics</td><td>Topic, partition, consumer group, offset và schema registry cho event stream.</td><td>Kafka phù hợp event stream throughput cao và replay; ordering giữ trong một partition, thường chọn key như orderId/userId để cùng aggregate đi cùng partition. Consumer group chia partition cho consumer; offset là vị trí đã đọc, không giống queue xóa message ngay.</td><td class="w-score">2/5</td><td class="w-difficulty">L3</td><td><span class="tag missing">Chưa practice</span></td><td>Tạo topic, produce/consume local, consumer group/rebalance/offset commit, schema compatibility.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="clean">
+        <h2>Clean Architecture</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="w-topic">Kiến thức</th><th class="w-desc">Định nghĩa / Dùng để làm gì</th><th class="w-practice">Chi tiết</th><th class="w-score">Điểm</th><th class="w-difficulty">Độ khó</th><th class="w-status">Trạng thái</th><th class="w-next">Còn thiếu / Học tiếp</th></tr></thead>
+            <tbody>
+              <tr><td class="w-topic">Layered Boundaries</td><td>Tách domain, application, infrastructure và interface để business không phụ thuộc framework/DB/HTTP.</td><td>Domain chứa business rule, application điều phối use case, infrastructure nói chuyện DB/broker/API, interface nhận HTTP/GraphQL. Mục tiêu không phải tạo nhiều folder, mà giữ rule quan trọng không bị dính TypeORM/Nest/transport để dễ test và thay đổi.</td><td class="w-score">4/5</td><td class="w-difficulty">L2</td><td><span class="tag done">Đã ổn</span></td><td>Luyện domain modeling nhiều case, chuẩn hóa folder/naming trong team lớn, practice REST + GraphQL song song.</td></tr>
+              <tr><td class="w-topic">Use Case / Transaction Boundary</td><td>Use case điều phối flow; transaction boundary quyết định operation nào phải atomic.</td><td>Use case trả lời một hành động business diễn ra qua các bước nào; transaction boundary trả lời bước nào phải cùng commit/rollback. Nếu boundary quá rộng sẽ giữ lock lâu; quá hẹp sẽ dễ có data nửa vời như order tạo rồi outbox/event không có.</td><td class="w-score">4/5</td><td class="w-difficulty">L3</td><td><span class="tag done">Đã ổn</span></td><td>Giữ use case vừa đủ, phân biệt orchestration/domain logic, học isolation/deadlock sâu hơn ở PostgreSQL.</td></tr>
+              <tr><td class="w-topic">Ports / Adapters / Repository</td><td>Port là interface app cần; adapter là implementation; repository load/save aggregate và giấu ORM.</td><td>Port nên xuất hiện khi application cần một capability ổn định như PaymentPort/EventPublisher/ProductCatalog; adapter là implementation cụ thể. Repository nên load/save aggregate, không biến thành nơi chứa mọi query report. Tạo port vô tội vạ sẽ làm code rối.</td><td class="w-score">4/5</td><td class="w-difficulty">L2</td><td><span class="tag done">Đã ổn</span></td><td>Không tạo port vô tội vạ; command repo vs query/report repo; translate external error/model sạch hơn.</td></tr>
+              <tr><td class="w-topic">Mapping / API Boundary</td><td>Mapper, presenter, DTO, error model giữ domain/ORM không leak ra API.</td><td>Mapping/API boundary chuyển đổi domain, ORM model, DTO và response contract để không leak internal model ra ngoài.</td><td class="w-score">4/5</td><td class="w-difficulty">L2</td><td><span class="tag done">Đã ổn</span></td><td>Presenter riêng REST/GraphQL, error code contract, validation groups/nested DTO.</td></tr>
+              <tr><td class="w-topic">Policy / Authorization</td><td>Guard chặn boundary; policy xử lý rule quyền sâu hơn theo resource/context.</td><td>Authorization policy quyết định actor nào được làm action nào trên resource nào, thường sâu hơn guard/decorator đơn giản.</td><td class="w-score">3/5</td><td class="w-difficulty">L2</td><td><span class="tag doing">Cần luyện</span></td><td>ABAC, permission theo resource/tenant, policy testing.</td></tr>
+              <tr><td class="w-topic">Advanced App Patterns</td><td>Unit of Work và CQRS là pattern dùng khi complexity đủ lớn.</td><td>Unit of Work gom nhiều repository trong một transaction; CQRS tách command model và query model khi read/write có nhu cầu khác nhau.</td><td class="w-score">2/5</td><td class="w-difficulty">L3</td><td><span class="tag doing">Biết trade-off</span></td><td>Học lại khi nhiều repo cần chung transaction hoặc khi query/report model tách khỏi command model.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="tactical-ddd">
+        <h2>Tactical DDD</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="w-topic">Kiến thức</th><th class="w-desc">Định nghĩa / Dùng để làm gì</th><th class="w-practice">Chi tiết</th><th class="w-score">Điểm</th><th class="w-difficulty">Độ khó</th><th class="w-status">Trạng thái</th><th class="w-next">Còn thiếu / Học tiếp</th></tr></thead>
+            <tbody>
+              <tr><td class="w-topic">Domain Model Building Blocks</td><td>Entity, value object, factory và invariant biểu diễn business model sạch khỏi ORM/framework.</td><td>Entity có identity và lifecycle; value object đo/diễn tả giá trị như Money/Email; factory tạo object hợp lệ; invariant là rule không được vi phạm. Nếu rule nằm rải ở controller/service, model sẽ yếu và dễ bypass khi có flow mới.</td><td class="w-score">4/5</td><td class="w-difficulty">L2</td><td><span class="tag done">Đã ổn</span></td><td>Email, Address, Currency, Quantity; viết invariant bằng business language.</td></tr>
+              <tr><td class="w-topic">Aggregate Design</td><td>Aggregate root và boundary bảo vệ consistency trong một transaction.</td><td>Aggregate root là cửa duy nhất để thay đổi cụm object cần consistency. Boundary chọn theo invariant cần bảo vệ, không theo số lượng table. Aggregate quá to gây lock/transaction nặng; quá nhỏ thì rule xuyên aggregate phải xử lý bằng domain service/saga/event.</td><td class="w-score">4/5</td><td class="w-difficulty">L3</td><td><span class="tag done">Đã ổn</span></td><td>Chọn aggregate nhỏ và đúng boundary, không chọn boundary theo table.</td></tr>
+              <tr><td class="w-topic">Domain / Integration Events</td><td>Domain event là chuyện nội bộ đã xảy ra; integration event là contract public gửi ra ngoài context.</td><td>Domain event diễn tả chuyện đã xảy ra trong domain; integration event là contract gửi sang context/service khác.</td><td class="w-score">3/5</td><td class="w-difficulty">L3</td><td><span class="tag doing">Cần luyện</span></td><td>Domain event lifecycle, event versioning, compatibility, schema contract.</td></tr>
+              <tr><td class="w-topic">Domain Policy / Service</td><td>Tách rule không thuộc tự nhiên vào entity hoặc cần reuse/compose.</td><td>Domain policy/service gom rule không tự nhiên thuộc về một entity hoặc cần compose/reuse qua nhiều flow.</td><td class="w-score">3/5</td><td class="w-difficulty">L3</td><td><span class="tag doing">Cần luyện</span></td><td>Phân biệt domain service với application service; rule composition/testing.</td></tr>
+              <tr><td class="w-topic">Saga / Process Manager</td><td>Điều phối workflow nhiều bước không thể rollback bằng một DB transaction.</td><td>Saga/process manager điều phối workflow nhiều bước qua nhiều service/resource khi không thể dùng một DB transaction duy nhất.</td><td class="w-score">3/5</td><td class="w-difficulty">L3</td><td><span class="tag doing">Cần luyện</span></td><td>Persist saga state, timeout/retry, webhook-based saga, compensation fail/manual intervention.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="strategic-ddd">
+        <h2>Strategic DDD</h2>
+        <p class="note">Đây là phần còn thiếu nhiều nhất nếu đi theo hướng TA. Nó không phải chỉ code pattern, mà là cách chia domain/system/team boundary.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="w-topic">Kiến thức</th><th class="w-desc">Định nghĩa / Dùng để làm gì</th><th class="w-practice">Chi tiết</th><th class="w-score">Điểm</th><th class="w-difficulty">Độ khó</th><th class="w-status">Trạng thái</th><th class="w-next">Còn thiếu / Học tiếp</th></tr></thead>
+            <tbody>
+              <tr><td class="w-topic">Language / Context Boundary</td><td>Ubiquitous language và bounded context giữ model/ngôn ngữ nhất quán theo domain.</td><td>Ubiquitous language giữ cách gọi thống nhất trong một context; bounded context tách model khi cùng một từ có nghĩa khác nhau giữa domain.</td><td class="w-score">2/5</td><td class="w-difficulty">L3</td><td><span class="tag doing">Đang học</span></td><td>Luyện đặt tên command/event/status/API bằng business language; vẽ context boundary cho e-commerce.</td></tr>
+              <tr><td class="w-topic">Subdomain Strategy</td><td>Chia domain thành core/supporting/generic để quyết định đầu tư thiết kế hay dùng giải pháp sẵn.</td><td>Subdomain strategy phân loại core/supporting/generic để biết phần nào cần đầu tư thiết kế sâu, phần nào nên dùng giải pháp sẵn.</td><td class="w-score">1/5</td><td class="w-difficulty">L3</td><td><span class="tag missing">Chưa học</span></td><td>Core/supporting/generic subdomain, build vs buy, domain vision/capability map.</td></tr>
+              <tr><td class="w-topic">Context Mapping</td><td>Thiết kế quan hệ giữa contexts: ACL, published language, open host service, customer/supplier, conformist, shared kernel, separate ways.</td><td>Context mapping mô tả quan hệ giữa các bounded context và cách tích hợp mà không làm model phụ thuộc lẫn nhau quá chặt.</td><td class="w-score">2/5</td><td class="w-difficulty">L3</td><td><span class="tag doing">Cần học</span></td><td>Practice full context map, Product Catalog API, event contract <code>order.created.v1</code>, tránh over-coupling/over-integrating.</td></tr>
+              <tr><td class="w-topic">Event Storming</td><td>Workshop khám phá domain bằng chuỗi events, commands, actors, policies, aggregates.</td><td>Event storming là workshop khám phá domain bằng domain event, command, actor, policy và aggregate để hiểu flow trước khi thiết kế model.</td><td class="w-score">1/5</td><td class="w-difficulty">L3</td><td><span class="tag missing">Chưa học</span></td><td>Học sau khi data modeling chắc hơn; áp dụng vào case order/payment/inventory.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="nestjs">
+        <h2>NestJS Core</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="w-topic">Kiến thức</th><th class="w-desc">Định nghĩa / Dùng để làm gì</th><th class="w-practice">Chi tiết</th><th class="w-score">Điểm</th><th class="w-difficulty">Độ khó</th><th class="w-status">Trạng thái</th><th class="w-next">Còn thiếu / Học tiếp</th></tr></thead>
+            <tbody>
+              <tr><td class="w-topic">Module / DI</td><td>Module đóng gói boundary; provider và injection token wire abstraction/implementation.</td><td>Nest module đóng gói provider theo boundary; DI wire interface với implementation để app thay adapter/test dễ hơn.</td><td class="w-score">4/5</td><td class="w-difficulty">L2</td><td><span class="tag done">Đã ổn</span></td><td>Dynamic module, factory/existing/async provider, token naming, tránh circular dependency bằng boundary đúng.</td></tr>
+              <tr><td class="w-topic">HTTP Boundary</td><td>Controller, pipe, guard, filter, interceptor, middleware xử lý request/response lifecycle.</td><td>HTTP boundary xử lý request lifecycle: validate input, auth, call use case, map lỗi, logging và shape response.</td><td class="w-score">3/5</td><td class="w-difficulty">L2</td><td><span class="tag doing">Cần luyện</span></td><td>JWT/permission guard, custom pipe, request logging/timeout interceptor, request id middleware, GraphQL filter.</td></tr>
+              <tr><td class="w-topic">Runtime Lifecycle / API Features</td><td>Startup/shutdown hook, serialization, versioning, SSE và response shaping.</td><td>Runtime lifecycle/API features giúp app startup/shutdown đúng, version API, stream event và serialize response có kiểm soát.</td><td class="w-score">3/5</td><td class="w-difficulty">L2</td><td><span class="tag doing">Cơ bản</span></td><td>Graceful shutdown Rabbit/outbox worker, API deprecation policy, notification/progress stream.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="graphql">
+        <h2>GraphQL</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="w-topic">Kiến thức</th><th class="w-desc">Định nghĩa / Dùng để làm gì</th><th class="w-practice">Chi tiết</th><th class="w-score">Điểm</th><th class="w-difficulty">Độ khó</th><th class="w-status">Trạng thái</th><th class="w-next">Còn thiếu / Học tiếp</th></tr></thead>
+            <tbody>
+              <tr><td class="w-topic">GraphQL API Design</td><td>Schema contract cho query/mutation/subscription; resolver là entrypoint giống controller.</td><td>GraphQL schema là contract cho client chọn field cần lấy; resolver là entrypoint gọi use case tương tự controller.</td><td class="w-score">3/5</td><td class="w-difficulty">L2</td><td><span class="tag doing">Cơ bản</span></td><td>Practice resolver + object/input types cho use case thật; contract-first/codegen khi cần.</td></tr>
+              <tr><td class="w-topic">GraphQL Type System</td><td>Scalar, enum, interface/union, directive, mapped types, fragment định nghĩa schema shape.</td><td>Type system định nghĩa shape dữ liệu GraphQL: scalar, enum, object, interface/union, input và fragment để contract rõ ràng.</td><td class="w-score">3/5</td><td class="w-difficulty">L2</td><td><span class="tag doing">Cơ bản</span></td><td>Money/Decimal scalar, search result/feed union, map domain enum ra GraphQL enum.</td></tr>
+              <tr><td class="w-topic">GraphQL Production Concerns</td><td>Kiểm soát N+1, query quá sâu/quá nặng, realtime event source.</td><td>GraphQL production cần kiểm soát N+1, query quá sâu/nặng, cache theo request và realtime subscription source.</td><td class="w-score">2/5</td><td class="w-difficulty">L3</td><td><span class="tag doing">Còn thiếu</span></td><td>Implement N+1 demo, depth/complexity score, subscription với PubSub/Rabbit event.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="security">
+        <h2>Security Production</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="w-topic">Kiến thức</th><th class="w-desc">Định nghĩa / Dùng để làm gì</th><th class="w-practice">Chi tiết</th><th class="w-score">Điểm</th><th class="w-difficulty">Độ khó</th><th class="w-status">Trạng thái</th><th class="w-next">Còn thiếu / Học tiếp</th></tr></thead>
+            <tbody>
+              <tr><td class="w-topic">Authentication</td><td>Session/cookie auth và token/JWT auth, gồm logout/revoke strategy.</td><td>Authentication xác minh user là ai; session/cookie và token/JWT có trade-off khác nhau về revoke, mobile/API và bảo mật browser.</td><td class="w-score">3/5</td><td class="w-difficulty">L2</td><td><span class="tag doing">Cơ bản</span></td><td>Cookie auth + CSRF, refresh token rotation, blacklist/session version.</td></tr>
+              <tr><td class="w-topic">Authorization</td><td>RBAC/ABAC kiểm soát ai được làm gì trên resource nào.</td><td>Authorization xác định user đã xác thực được phép làm gì; RBAC đơn giản theo role, ABAC xét thêm resource/context.</td><td class="w-score">3/5</td><td class="w-difficulty">L2</td><td><span class="tag doing">Cần luyện</span></td><td>Permission matrix, resource owner, tenant-aware policy, ABAC sau RBAC.</td></tr>
+              <tr><td class="w-topic">Web/API Attack Surface</td><td>CORS, CSRF, security headers, SQL injection, XSS và request validation.</td><td>Web/API attack surface là các điểm request/browser/input có thể bị lợi dụng: CORS, CSRF, injection, XSS, validation và headers.</td><td class="w-score">3/5</td><td class="w-difficulty">L2</td><td><span class="tag doing">Cơ bản</span></td><td>Helmet/CSP/HSTS, CSRF token, vulnerable vs safe query, stored/reflected XSS, rich text/file sanitization.</td></tr>
+              <tr><td class="w-topic">Abuse / Secrets / Audit</td><td>Chống brute-force, quản lý secrets, audit log cho hành động quan trọng.</td><td>Abuse control giảm brute-force/spam; secret management bảo vệ credential; audit log ghi lại hành động nhạy cảm để điều tra.</td><td class="w-score">2/5</td><td class="w-difficulty">L3</td><td><span class="tag missing">Còn thiếu</span></td><td>Rate limit theo IP + account, External Secrets/Vault/cloud secret manager, audit log cho admin/security/payment.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="postgres">
+        <h2>PostgreSQL / SQL</h2>
+        <p class="note">Đây là mảng cần học riêng. Hiện tại mày hiểu transaction/lock ở mức concept và thao tác đơn giản, nhưng để làm TA cần mạnh hơn ở schema, constraint, index, query plan.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="w-topic">Kiến thức</th><th class="w-desc">Định nghĩa / Dùng để làm gì</th><th class="w-practice">Chi tiết</th><th class="w-score">Điểm</th><th class="w-difficulty">Độ khó</th><th class="w-status">Trạng thái</th><th class="w-next">Còn thiếu / Học tiếp</th></tr></thead>
+            <tbody>
+              <tr><td class="w-topic">Schema Fundamentals</td><td>Table/row/column, primary key, foreign key, nullable/default và kiểu dữ liệu nền.</td><td>Schema fundamentals là cách biến dữ liệu business thành cấu trúc lưu trữ: type đúng để tránh sai dữ liệu, PK để định danh, FK để giữ quan hệ, NULL/default để biểu diễn trạng thái thiếu dữ liệu. Bẫy thường gặp là dùng kiểu quá lỏng, thiếu FK/unique, hoặc để app tự bảo vệ mọi thứ.</td><td class="w-score">3/5</td><td class="w-difficulty">L1</td><td><span class="tag doing">Đã học nền</span></td><td>Practice schema thật với payments/orders; học composite key, ON DELETE/UPDATE, generated column khi cần.</td></tr>
+              <tr><td class="w-topic">JSONB</td><td>Lưu dữ liệu linh hoạt dạng JSON binary, phù hợp metadata/event/raw payload hơn core field.</td><td>JSONB hợp với metadata, raw payload, audit/event data có shape thay đổi. Nếu field là business core, cần query/join/constraint thường xuyên thì nên tách thành column/table. Query JSONB cần hiểu <code>-></code>, <code>->></code>, nested/array, và phải có expression/GIN index nếu query nhiều.</td><td class="w-score">3/5</td><td class="w-difficulty">L2</td><td><span class="tag doing">Đã practice</span></td><td>Học JSONB indexing sau phần index/query plan; phân biệt metadata vs business core field.</td></tr>
+              <tr><td class="w-topic">Data Modeling</td><td>Biến business requirement thành table, relationship, rule, query support và risk.</td><td>Data modeling là bước dịch business thành entity, relationship, cardinality, source of truth, snapshot khi cần, constraint và query cần support. Không phải lúc nào cũng snapshot; chỉ snapshot khi business cần giữ trạng thái tại thời điểm cũ như giá lúc mua. Đây là mindset trước khi viết DDL/ORM.</td><td class="w-score">2/5</td><td class="w-difficulty">L2</td><td><span class="tag doing">Đang luyện</span></td><td>Luyện thêm case ít hint hơn: đề xuất table/relation, review schema sai, sau đó mới chuyển sang SQL DDL và query validation.</td></tr>
+              <tr><td class="w-topic">Schema / Access Control</td><td>Schema namespace, role/user, GRANT/REVOKE, schema/table/column permission, default privileges.</td><td>Access control tách quyền theo schema/table/column/role. Runtime user của service chỉ nên có quyền cần thiết để query/write business data; migration user mới có quyền ALTER/CREATE/DROP. Cần nhớ <code>GRANT USAGE ON SCHEMA</code> chỉ cho đi vào schema, chưa có quyền SELECT table.</td><td class="w-score">3/5</td><td class="w-difficulty">L2</td><td><span class="tag doing">Đã practice</span></td><td>Role inheritance, group role, service boundary, reporting/read-only user, view-based access, default privileges với migration user.</td></tr>
+              <tr><td class="w-topic">Constraint</td><td>Rule DB tự bảo vệ data: NOT NULL, UNIQUE, CHECK, FK, partial unique.</td><td>Constraint là lớp bảo vệ cuối cùng cho data integrity: NOT NULL cho required, UNIQUE cho không trùng, FK cho quan hệ, CHECK cho rule đơn giản, partial unique cho case như soft delete. Rule business quá phức tạp/external dependency nên ở app, nhưng invariant dữ liệu rõ ràng nên để DB giữ.</td><td class="w-score">3/5</td><td class="w-difficulty">L2</td><td><span class="tag doing">Đang luyện</span></td><td>Practice constraint-first schema design trên case thật; học production migration khi thêm constraint vào bảng đã có data.</td></tr>
+              <tr><td class="w-topic">Schema Review</td><td>Nhìn schema draft và phát hiện lỗi model: thiếu bảng, sai cardinality, snapshot sai chỗ, constraint thiếu.</td><td>Schema review là soi ngược từ business/query về model: có thiếu join table không, cardinality đúng chưa, source of truth nằm đâu, có duplicate nguy hiểm không, constraint nào cần DB bảo vệ, query/report có support được không. Đây là kỹ năng TA sát thực tế hơn chỉ viết SQL.</td><td class="w-score">2/5</td><td class="w-difficulty">L2</td><td><span class="tag doing">Đang luyện</span></td><td>Luyện dạng review ngược nhiều hơn vì sát công việc TA.</td></tr>
+              <tr><td class="w-topic">Transactions / Concurrency</td><td>ACID, transaction boundary, isolation level, pessimistic/optimistic lock.</td><td>Transaction giúp nhiều thay đổi cùng thành công hoặc cùng rollback; concurrency xử lý nhiều request chạm cùng data. Cần hiểu lock row/table, lost update, race condition, deadlock. Ví dụ hot product inventory sẽ bị serialize trên cùng row dù DB có nhiều process, vì consistency bắt buộc.</td><td class="w-score">3/5</td><td class="w-difficulty">L3</td><td><span class="tag doing">Cần sâu</span></td><td>Isolation anomalies, read committed/repeatable read/serializable, NOWAIT, SKIP LOCKED, deadlock, optimistic lock implementation.</td></tr>
+              <tr><td class="w-topic">Query / Performance</td><td>JOIN, aggregation, index, EXPLAIN/query plan và read/report pattern.</td><td>Query performance bắt đầu từ planner: PG dùng statistics từ <code>ANALYZE</code>, selectivity và cost để chọn seq scan/index scan/bitmap scan. Index chỉ mở thêm access path, không ép DB dùng. Đã practice covering index: <code>ON (...)</code> là cột dùng để filter/order, <code>INCLUDE (...)</code> là cột lưu kèm để trả dữ liệu từ index; nếu visibility map tốt thì có thể ra <code>Index Only Scan</code> với <code>Heap Fetches</code> thấp/0. Trade-off: covering index lớn hơn, tốn disk và làm write nặng hơn, nên chỉ dùng cho query hot path.</td><td class="w-score">3/5</td><td class="w-difficulty">L3</td><td><span class="tag doing">Đang học</span></td><td>Để sau: SQL performance debugging checklist hardcore. Trước mắt chỉ cần biết index/filter/order/covering; sau này học composite index order, GROUP BY/window, join plan, sort spill và đọc <code>EXPLAIN (ANALYZE, BUFFERS)</code> trên query thật.</td></tr>
+              <tr><td class="w-topic">Schema Migration</td><td>Versioned schema change chạy cùng code release.</td><td>Schema migration là thay đổi DB theo version thay vì sửa tay production. Production cần backward-compatible rollout: add nullable column, backfill bằng job/batch, app dual-write/switch-read, rồi cuối cùng mới enforce/drop. <code>CREATE INDEX CONCURRENTLY</code> build index trên bảng lớn mà vẫn cho write chạy. <code>CHECK ... NOT VALID</code> là cầu tạm để chặn data mới sai trong lúc data cũ chưa sạch; sau backfill thì <code>VALIDATE CONSTRAINT</code>, chuyển sang <code>ALTER COLUMN ... SET NOT NULL</code> nếu đây là required column, rồi drop CHECK nếu đã có NOT NULL thay thế.</td><td class="w-score">3/5</td><td class="w-difficulty">L3</td><td><span class="tag doing">Đang học</span></td><td>Luyện thêm rollback strategy, migration lock, large-table backfill, PITR/backup policy và zero-downtime checklist.</td></tr>
+              <tr><td class="w-topic">Database Bottleneck / Scaling</td><td>Nhận diện bottleneck DB và chọn đúng kỹ thuật giảm tải.</td><td>Primary DB không phải một process duy nhất, nhưng thường là một node/instance nhận write chính; bottleneck đến từ CPU, disk I/O, WAL, lock contention, connection quá nhiều, query sai index hoặc hot row. Map xử lý: query chậm -> index/EXPLAIN; connection nhiều -> pool/PgBouncer; read nhiều -> cache/read replica; side effect nặng -> event-driven/queue; hot row -> concurrency control/data redesign; report nặng -> read model/OLAP.</td><td class="w-score">2/5</td><td class="w-difficulty">L3</td><td><span class="tag doing">Đang học</span></td><td>Practice đọc DB metrics, lock wait, connection pool sizing, cache invalidation, read replica lag, queue backpressure.</td></tr>
+              <tr><td class="w-topic">Large Data / Reporting</td><td>Partitioning, materialized view, backup/restore phục vụ bảng lớn và reporting.</td><td>Large data/reporting xử lý khi bảng quá lớn hoặc query đọc nặng làm ảnh hưởng OLTP. Partition giúp chia dữ liệu theo time/tenant/key; materialized view/read model giúp report nhanh hơn; OLAP/data warehouse tách workload phân tích khỏi DB giao dịch chính.</td><td class="w-score">2/5</td><td class="w-difficulty">L3</td><td><span class="tag doing">Còn thiếu</span></td><td>pg_dump/restore/PITR, native partitioning, materialized view/read model/report refresh.</td></tr>
+              <tr><td class="w-topic">PostgreSQL Extensions</td><td>Plugin mở rộng PostgreSQL, bật bằng <code>CREATE EXTENSION</code>; học theo use case, không phải học sâu toàn bộ.</td><td>PostgreSQL extensions mở rộng khả năng DB theo use case như UUID, search, monitoring, GIS, vector, scheduler hoặc time-series; chỉ học sâu khi dự án cần.</td><td class="w-score">2/5</td><td class="w-difficulty">L1</td><td><span class="tag doing">Biết tổng quan</span></td><td>Chỉ học sâu khi cần use case cụ thể: UUID/email/search/performance trước; AI/geo/time-series/cross-db/scheduler sau.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="ops">
+        <h2>Ops / Backup / System Design / TA</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="w-topic">Kiến thức</th><th class="w-desc">Định nghĩa / Dùng để làm gì</th><th class="w-practice">Chi tiết</th><th class="w-score">Điểm</th><th class="w-difficulty">Độ khó</th><th class="w-status">Trạng thái</th><th class="w-next">Còn thiếu / Học tiếp</th></tr></thead>
+            <tbody>
+              <tr><td class="w-topic">Production Operations</td><td>Rollback, backup/restore, runbook và incident thao tác an toàn.</td><td>Production operations là vận hành có kiểm soát: rollback code khác restore data, migration phải rollback-safe, backup phải test restore được. Prod chuẩn thường có daily snapshot + WAL archive/PITR theo policy; feature nhỏ dựa vào backup nền, còn payment/wallet/large update/drop/change type cần extra safety trước deploy và query verify sau deploy.</td><td class="w-score">3/5</td><td class="w-difficulty">L3</td><td><span class="tag doing">Cần luyện</span></td><td>Rollback với migration backward-compatible, PITR, backup verification, incident runbook chuẩn.</td></tr>
+              <tr><td class="w-topic">Production-lite Platform</td><td>Một server/k3s/ingress/app/monitoring và networking đủ để deploy thật quy mô nhỏ.</td><td>Production-lite platform giúp hiểu end-to-end ở quy mô nhỏ: public IP/VPS, K8s/k3s, ingress, app pods, DB/broker, secrets, logs/metrics. Đây không phải full enterprise HA, nhưng đủ để học đường đi request, deploy, debug và vận hành thật.</td><td class="w-score">4/5</td><td class="w-difficulty">L2</td><td><span class="tag done">Đã ổn</span></td><td>Multi-node, managed Kubernetes, L4/L7 LB, sticky session, health checks.</td></tr>
+              <tr><td class="w-topic">TA System Design</td><td>Thiết kế hệ thống theo requirements, scale, reliability, trade-off và ghi lại decision.</td><td>TA system design là nối business requirement với module boundary, data model, API/event contract, deployment, scaling, reliability và security. Câu trả lời tốt không chỉ nêu công nghệ, mà giải thích trade-off: vì sao queue, vì sao cache, vì sao DB constraint, vì sao tách/không tách service.</td><td class="w-score">3/5</td><td class="w-difficulty">L3</td><td><span class="tag doing">Cần luyện</span></td><td>Practice case end-to-end, ADR, C4 diagram, API/event contracts.</td></tr>
+              <tr><td class="w-topic">Capacity / Cost</td><td>Ước lượng traffic/resource/storage và chi phí vận hành.</td><td>Capacity/cost là ước lượng đủ dùng trước khi chọn kiến trúc: QPS, concurrent users, DB connections, row growth, storage, queue throughput, CPU/memory và monitoring cost. Không phải cứ scale pod là xong; DB, broker, network và tiền vận hành mới là giới hạn thật.</td><td class="w-score">1/5</td><td class="w-difficulty">L3</td><td><span class="tag missing">Chưa học</span></td><td>QPS, CPU/memory, DB connections, queue throughput, cloud/VPS/monitoring/DB cost.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
